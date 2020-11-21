@@ -1,13 +1,15 @@
 package fpt.fis.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 public class UngVien {
-    @javax.persistence.Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String name;
     private String phoneNumber;
@@ -16,7 +18,9 @@ public class UngVien {
     private Long cMND;
     private String honNhan;
     private  Date ngayCapCMND;
-    @OneToMany
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "ungvien_id")
     private List<NguoiThan> nguoiThans;
 
@@ -36,7 +40,8 @@ public class UngVien {
         this.extraInformation = extraInformation;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name="extrainformation_id")
     private ExtraInformation extraInformation;
 

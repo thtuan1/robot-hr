@@ -18,7 +18,7 @@ public class NguoiThanController {
     private NguoiThanService nguoiThanService;
 
     @GetMapping(value = "/getAllNguoiThan")
-    public List<NguoiThanDTO> getAllNguoiThan(Long ungvien_id) {
+        public List<NguoiThanDTO> getAllNguoiThan(Long ungvien_id) {
         return nguoiThanService.getAll(ungvien_id);
     }
 

@@ -30,12 +30,17 @@ import java.util.*;
 public class UngVienController {
     @Autowired
     private UngVienService ungVienService;
+    @Autowired
     private UngVienResponsitory ungVienRepository;
-
     @Autowired
     private NguoiThanService nguoiThanService;
     @Autowired
     private ExtraInformationService extraInformationService;
+
+    @GetMapping(value = "/getOne")
+    public ResponseEntity<UngVien> getOne(@RequestParam("id") Long id) {
+        return new ResponseEntity<>(ungVienService.getOne(id), HttpStatus.OK);
+    }
 
     @GetMapping(value = "/getAllUngVien")
     public ResponseEntity<List<UngVienDTO>> getAll() {
@@ -209,6 +214,5 @@ public class UngVienController {
     public Optional<ExtraInformation> getExtra(@PathVariable Long id) {
         Optional<ExtraInformation> ungVien=extraInformationService.getOne(id);
         return ungVien;
-
     }
 }

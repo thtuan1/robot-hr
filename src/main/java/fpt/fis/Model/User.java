@@ -7,8 +7,8 @@ import javax.persistence.Id;
 import java.util.Date;
 @Entity
 public class User {
-    @javax.persistence.Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long Id;
     private  String userName;
     private  String password;

@@ -9,15 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class UngVienServiceImpl implements UngVienService {
     @Autowired
     private UngVienResponsitory ungVienRepository;
+
     private ModelMapper modelMapper = new ModelMapper();
 
     @Override
@@ -64,9 +63,11 @@ public class UngVienServiceImpl implements UngVienService {
         ungVienRepository.save(ungVien1);
         return ungVien1;
     }
-    @Transactional
-    public Optional<UngVien> getOne(Long id) {
-//        Optional<UngVien> ungVien = ungVienRepository.findById(id);
-        return ungVienRepository.findById(id);
+
+    @Override
+    public UngVien getOne(Long id) {
+       return ungVienRepository.getOne(id);
     }
+
+
 }
