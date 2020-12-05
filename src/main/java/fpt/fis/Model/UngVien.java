@@ -42,7 +42,6 @@ public class UngVien {
 
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonIgnore
-    @PrimaryKeyJoinColumn(name="extrainformation_id")
     private ExtraInformation extraInformation;
 
     public Long getId() {
