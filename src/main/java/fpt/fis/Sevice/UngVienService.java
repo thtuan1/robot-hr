@@ -13,4 +13,5 @@ public interface UngVienService {
     UngVien Save(UngVien ungVien);
     UngVien deletedUngVien(@RequestParam("id ") Long id);
     UngVien getOne(Long id);
+    boolean checkExitCMND(Long cmnd);
 }

@@ -12,7 +12,7 @@ public interface UngVienResponsitory extends JpaRepository<UngVien,Long> {
     List<UngVien> getAll();
 
     @Query("SELECT CASE WHEN count  (u.cMND)>0  then true ELSE false END FROM UngVien u WHERE u.cMND = ?1")
-    boolean existsUsernameMembership(int cmnd);
+    boolean checkExitCMND (Long cmnd);
 
     @Query("from UngVien where id = :id")
     UngVien getOne(@Param("id") Long id);

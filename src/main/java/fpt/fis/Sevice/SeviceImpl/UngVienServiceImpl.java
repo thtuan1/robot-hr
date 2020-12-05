@@ -68,6 +68,14 @@ public class UngVienServiceImpl implements UngVienService {
     public UngVien getOne(Long id) {
        return ungVienRepository.getOne(id);
     }
+    @Override
+   public boolean checkExitCMND(Long CMND)
+    {
+        if(ungVienRepository.checkExitCMND(CMND)){
+            return true;
+    }
+        return false;
+    }
 
 
 }
