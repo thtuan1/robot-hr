@@ -1,5 +1,6 @@
 package fpt.fis.Controller;
 
+import fpt.fis.DTO.MessageResponse;
 import fpt.fis.DTO.UngVienDTO;
 import fpt.fis.Model.ExtraInformation;
 import fpt.fis.Model.NguoiThan;
@@ -68,9 +69,10 @@ public class UngVienController {
 
 
     @PostMapping(value = "/import")
-    public void Import(@RequestParam("file") MultipartFile inputFile) throws IOException {
+    public ResponseEntity<?> Import(@RequestParam("file") MultipartFile inputFile) throws IOException {
         XSSFWorkbook wb = new XSSFWorkbook(inputFile.getInputStream());
-//import thong tin ung vien
+
+        //import thong tin ung vien
         if (wb != null) {
             FormulaEvaluator evaluator = wb.getCreationHelper().createFormulaEvaluator();
             Sheet sheet;
@@ -79,8 +81,12 @@ public class UngVienController {
             Row firstRow = iterator.next();
             Cell firstCell = firstRow.getCell(0);
             UngVien ungVien = new UngVien();
-            if (!ungVienRepository.checkExitCMND(Long.parseLong(sheet.getRow(13).getCell(5).toString())))
-            {
+
+            if (ungVienRepository.checkExitCMND(Long.parseLong(sheet.getRow(13).getCell(5).toString())) == true) {
+                return ResponseEntity
+                        .badRequest()
+                        .body(new MessageResponse("Error: Identity Number is already in use!"));
+            } else {
                 String name = sheet.getRow(11).getCell(2).toString();
                 String phone = sheet.getRow(11).getCell(5).toString();
                 String date_sinh = sheet.getRow(12).getCell(2).toString();
@@ -206,10 +212,11 @@ public class UngVienController {
 
                 ungVien.setExtraInformation(extraInformation);
                 ungVienService.Save(ungVien);
+
+                return new ResponseEntity<>(ungVien, HttpStatus.OK);
             }
-
         }
-
+        return ResponseEntity.badRequest().body(new MessageResponse("Error: File is empty!"));
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
