@@ -40,8 +40,9 @@ public class UngVien {
         this.extraInformation = extraInformation;
     }
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JsonIgnore
+    @JoinColumn(name = "extrainformation_id")
     private ExtraInformation extraInformation;
 
     public Long getId() {
