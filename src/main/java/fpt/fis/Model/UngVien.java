@@ -19,9 +19,8 @@ public class UngVien {
     private String honNhan;
     private  Date ngayCapCMND;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
-    @JoinColumn(name = "ungvien_id")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="ungvien_id")
     private List<NguoiThan> nguoiThans;
 
     public List<NguoiThan> getNguoiThans() {
@@ -40,8 +39,9 @@ public class UngVien {
         this.extraInformation = extraInformation;
     }
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnore
+    @PrimaryKeyJoinColumn(name="id")
     private ExtraInformation extraInformation;
 
     public Long getId() {
