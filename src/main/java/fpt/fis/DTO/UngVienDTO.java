@@ -5,9 +5,19 @@ import java.util.Date;
 public class UngVienDTO {
     private Long Id;
     private String name;
+
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
     private String phoneNumber;
     private Date ngaySinh;
     private String emailCaNhan;
+    private String gioiTinh;
     private String danToc;
 
     public String getDanToc() {

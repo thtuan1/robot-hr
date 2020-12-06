@@ -12,14 +12,24 @@ public class UngVien {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String name;
+
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
     private String phoneNumber;
     private Date ngaySinh;
     private String emailCaNhan;
     private Long cMND;
     private String honNhan;
+    private String gioiTinh;
     private  Date ngayCapCMND;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name="ungvien_id")
     private List<NguoiThan> nguoiThans;
 

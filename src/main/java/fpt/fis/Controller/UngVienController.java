@@ -96,6 +96,7 @@ public class UngVienController {
                 String noiCapCMND = sheet.getRow(15).getCell(5).toString();
                 String danToc = sheet.getRow(16).getCell(2).toString();
                 String queQuan = sheet.getRow(16).getCell(5).toString();
+                String gioiTinh = sheet.getRow(13).getCell(2).toString();
                 String quocTich = sheet.getRow(17).getCell(2).toString();
                 String diachiTC = sheet.getRow(18).getCell(2).toString();
                 String diaChiHT = sheet.getRow(19).getCell(2).toString();
@@ -144,7 +145,7 @@ public class UngVienController {
                 ungVien.setName(name);
                 ungVien.setPhoneNumber(phone);
                 ungVien.setDanToc(danToc);
-
+                ungVien.setGioiTinh(gioiTinh);
                 ungVien.setEmailCaNhan(emailCN);
                 ungVien.setNoiSinh(noiSinh);
                 ungVien.setQueQuan(queQuan);
